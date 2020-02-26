@@ -6,6 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Chat extends Model
 {
-  protected $hidden = ['chatId'];
-  protected $visible	= ['name','contacts'];
+  protected $visible	= ['chatId','chatName','chatPicture'];
+  protected $table = 'chat';
 }

@@ -5,18 +5,31 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
     use Notifiable;
 
+    public function createToken() {
+      $token = Str::random(60);
+      error_log($token);
+      $this->api_token = hash('sha256', $token);
+      $saved = $this->save();
+      error_log($saved);
+      error_log($this->name);
+      return $token;
+
+    }
+
+    protected $primaryKey = 'userId';
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'api_token'
     ];
 
     /**
