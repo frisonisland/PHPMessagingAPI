@@ -12,9 +12,9 @@ use Illuminate\Support\Facades\DB;
 
 class AddressBookController extends Controller
 {
-  public function index()
+  public function index(Request $request)
   {
-    $user = DB::table('users')->where('email', 'frisonisland@gmail.com')->first();
+    $user = $request->user();
     $address_book = AddressBook::where('ownerId', $user->userId)->pluck('contactId');
     $contacts = DB::table('users')->whereIn('userId', $address_book)->get()->toArray();
     return ["address_book" => $contacts];

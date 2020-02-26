@@ -13,15 +13,11 @@ class User extends Authenticatable
 
     public function createToken() {
       $token = Str::random(60);
-      error_log($token);
       $this->api_token = hash('sha256', $token);
       $saved = $this->save();
-      error_log($saved);
-      error_log($this->name);
       return $token;
-
     }
-
+    protected $table = 'users';
     protected $primaryKey = 'userId';
     /**
      * The attributes that are mass assignable.

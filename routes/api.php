@@ -16,9 +16,7 @@ use App\Http\Resources\Messages as MessagesResource;
 use App\Http\Resources\Contacts as ContactsResource;
 use Illuminate\Support\Facades\DB;
 use App\Message;
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
+use App\User;
 
 Route::post('/login', 'ApiLoginController@authenticate');
 
@@ -30,6 +28,6 @@ Route::get('/messages/{chatId}', function (Request $request) {
     return ["messages" => [new MessagesResource($item)]];
 });
 
-Route::get('/contacts', 'AddressBookController@index');
+Route::get('/contacts', 'AddressBookController@index')->middleware("auth:api");
 
-Route::get('/chats', 'ChatController@index');
+Route::get('/chats', 'ChatController@index')->middleware("auth:api");
