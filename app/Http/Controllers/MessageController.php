@@ -3,14 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Message;
+use Illuminate\Support\Facades\DB;
 
 class MessageController extends Controller
 {
-  public function index(Request $request)
+  public function index(Request $request, $chatId)
   {
     $user = $request->user();
-    $address_book = Message::where('ownerId', $user->userId)->pluck('contactId');
-    $contacts = DB::table('users')->whereIn('userId', $address_book)->get()->toArray();
-    return ["address_book" => $contacts];
+    $messages = DB::table('message')->select('message.*', 'users.name')
+                ->where('chatId', $chatId)
+                ->join('users', 'users.userId', '=', 'message.userId')
+                ->get();
+
+    return ["messages" => $messages];
   }
 }

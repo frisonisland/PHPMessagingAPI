@@ -18,9 +18,9 @@ class CreateMessage extends Migration
             $table->index('messageId');
             $table->unsignedBigInteger('chatId');
             $table->unsignedBigInteger('userId');
-            $table->foreign('chatId')->references('chatId')->on('chat');
-            $table->foreign('userId')->references('userId')->on('users');
-            $table->string('message');
+            $table->foreign('chatId')->references('chatId')->on('chat')->onDelete('cascade');
+            $table->foreign('userId')->references('userId')->on('users')->onDelete('cascade');
+            $table->longText('message');
             $table->timestamps();
         });
     }

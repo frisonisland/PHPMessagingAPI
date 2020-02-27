@@ -20,13 +20,9 @@ use App\User;
 
 Route::post('/login', 'ApiLoginController@authenticate');
 
-Route::get('/messages/{chatId}', function (Request $request) {
+Route::get('/user', 'UserController@index')->middleware("auth:api");;
 
-    $item = new Message();
-    $item->text = 'Hi';
-    $item->id = 1;
-    return ["messages" => [new MessagesResource($item)]];
-});
+Route::get('/messages/{chatId}', 'MessageController@index')->middleware("auth:api");;
 
 Route::get('/contacts', 'AddressBookController@index')->middleware("auth:api");
 

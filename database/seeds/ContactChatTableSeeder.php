@@ -15,6 +15,7 @@ class ContactChatTableSeeder extends Seeder
       ContactChat::truncate();
 
       // Add chat for every contact with admin
+      //This means partecipants ar admin and other user
       for ($i = 1; $i <= 3; $i++) {
         ContactChat::create([
             'chatId' => $i,

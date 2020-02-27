@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run() {
         // Let's clear the users table first
-      User::truncate();
+      DB::table('users')->delete();
 
       $faker = \Faker\Factory::create();
 
