@@ -17,8 +17,8 @@ class CreateAddressBook extends Migration
             $table->unsignedBigInteger('ownerId');
             $table->unsignedBigInteger('contactId');
             $table->index(['ownerId','contactId']);
-            $table->foreign('ownerId')->references('userId')->on('users');
-            $table->foreign('contactId')->references('userId')->on('users');
+            $table->foreign('ownerId')->references('userId')->on('users')->onDelete('cascade');
+            $table->foreign('contactId')->references('userId')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

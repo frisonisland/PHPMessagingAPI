@@ -19,7 +19,7 @@ class CreateChat extends Migration
             $table->string('chatName');
             $table->string('chatPicture');
             $table->timestamps();
-            $table->unsignedBigInteger('createdBy');
+            $table->unsignedBigInteger('createdBy')->onDelete('cascade');
             $table->foreign('createdBy')->references('userId')->on('users');
         });
     }

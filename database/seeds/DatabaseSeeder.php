@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(AddressBookTableSeeder::class);
         $this->call(ChatTableSeeder::class);
         $this->call(ContactChatTableSeeder::class);
+        $this->call(MessageTableSeeder::class);
 
     }
 }

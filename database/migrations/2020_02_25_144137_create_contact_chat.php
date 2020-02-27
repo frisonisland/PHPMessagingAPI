@@ -17,8 +17,8 @@ class CreateContactChat extends Migration
             $table->unsignedBigInteger('chatId');
             $table->unsignedBigInteger('userId');
             $table->timestamps();
-            $table->foreign('chatId')->references('chatId')->on('chat');
-            $table->foreign('userId')->references('userId')->on('users');
+            $table->foreign('chatId')->references('chatId')->on('chat')->onDelete('cascade');
+            $table->foreign('userId')->references('userId')->on('users')->onDelete('cascade');
         });
     }
 
